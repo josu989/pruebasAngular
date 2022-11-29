@@ -1,0 +1,106 @@
+<div class="card">
+
+    <div class="estiloComponentes">
+        
+        <div class="flex">
+           <button pButton label="Refrescar" class="p-button p-button-rounded" (click)="limpiarTabla(miTabla)"></button>
+           <button pButton label="Agregar" class="p-button p-button-rounded" [style]="{'margin-left': '.5em'}" (click)="abrirModal()"></button>
+        </div>
+        <div class="izquierda">
+            <span class="p-input-icon-right ml-auto">
+                <i class="pi pi-search"></i>
+                <input  pInputText type="text" (input)="miTabla.filterGlobal($any($event.target).value!, 'contains')" placeholder="Busqueda" />
+            </span>
+            </div>
+</div>
+
+
+<p-table #miTabla  id="miTabla" [value]="listadeVideojuegos" dataKey="id"
+        [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" responsiveLayout="scroll"
+        [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" class="formato" styleClass="p-datatable-sm" 
+        [globalFilterFields]="['nombre','desarrolladora','precio','clasificacion']"> 
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nombre</th>
+                <th>Desarrolladora</th>
+                <th>Precio</th>
+                <th>Clasificacion</th>
+                <!--<th>Eliminar</th>-->  
+            </tr>
+        </ng-template>
+        
+        <!--Tabla que muestra los juegos-->
+        <ng-template pTemplate="body" let-juegos>
+            <tr>
+                <td>
+                    {{juegos.nombre}}
+                </td>
+                <td>
+                    <span class="image-text">{{juegos.desarrolladora}}</span>
+                </td>
+                <td>
+                    <strong>{{juegos.precio | currency}}</strong>
+                </td>
+                <td>
+                    <span>{{juegos.clasificacion | uppercase}}</span>
+                </td>
+                <td>
+                    <!--background-color: transparent; border:none; para quitar el color de fondo del boton y el cadro de este para que simule que esta transparente-->
+                    <!--<button class="pi pi-trash" style="background-color: transparent; border:none;"></button>-->
+                </td>
+            </tr>
+           
+            <tr class="lineas">
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5">No se econtraron resultados.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<!--Formulario en modal-->
+<p-dialog [(visible)]="modal" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}" class="modalFormat">
+    <ng-template pTemplate="header">
+        <!--div para el estilo del header del modal-->
+    <div class="headerModal">
+       <h1>Agregar Juegos</h1>
+    </div>
+    </ng-template>
+    <div class="estiloDelFormulario">
+        <form class="form-group row" id="agregar"><!--el id agregar es para limpiar el formulario, checar el videojuegos.component.ts-->
+            <!--este class hace que cada elemento aparezcan en columna-->
+          <div class="form-group col-md-3">
+          <label for="nombre">Nombre:</label>
+                                                                                                <!--enlace bidireccional-->
+          <input type="text" name="nombre" id="nombre" placeholder="nombre" class="form-control" [(ngModel)]="nombre" required>
+          </div>
+          
+          <div class="form-group col-md-3">
+            <label for="desarrolladora">Desarrolladora:</label>
+                                                                                                  <!--enlace bidireccional-->
+            <input type="text" name="desarrolladora" id="desarrolladora" placeholder="desarrolladora" class="form-control" [(ngModel)]="desarrolladora" required>
+            </div>
+          
+            <div class="form-group col-md-3">
+              <label for="precio">Precio:</label>
+                                                                                                    <!--enlace bidireccional-->
+              <input type="number" name="precio" id="precio" placeholder="precio" class="form-control" [(ngModel)]="precio" required>
+              </div>
+          
+              <div class="form-group col-md-3">
+                <label for="clasificacion">Clasificacion:</label>
+                                                                                                      <!--enlace bidireccional-->
+                <input type="text" name="clasificacion" id="clasificacion" placeholder="clasificacion" class="form-control" [(ngModel)]="clasificacion" required>
+                </div>
+                
+          </form>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton label="Cancelar" class="p-button p-button-rounded" [style]="{'margin-left': '.5em'}" (click)="cancelar()"></button>
+        <button  pButton class="p-button p-button-rounded" label="Guardar" (click)="agregarJuego(miTabla)"></button> <!--Pasamos el id de la tabla para refrescar y actualizar los numeritos de busqueda de abajo-->
+    </ng-template>
+</p-dialog>

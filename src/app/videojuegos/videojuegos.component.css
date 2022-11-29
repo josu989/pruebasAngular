@@ -1,0 +1,47 @@
+.estiloComponentes{
+    margin-top: 2%;
+  }
+  .izquierda{
+    position: absolute;
+    margin-left: 70%;
+    margin-top: -3%;
+    
+  }
+  .izquierda input{
+    width: 400px;
+    height: 45px;
+   border: none;
+   border-bottom: 2px solid #68072D;
+   font-family: Arial, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; /*Estilo del placeholder del cuadro de busqueda*/
+  }
+
+  .formato{
+    margin-top: 5%;
+    width: 80%;
+    margin-left: 10%;
+  }
+  .lineas{
+    border-bottom: 0.5px solid #000000;
+   }
+   .p-button:hover{
+    background-color: #efbe1f; 
+    border: 1px solid #efbe1f;
+    color: white;
+  }
+  .pi-trash{
+    text-decoration: none;
+    color: #68072D;
+  }
+  .pi-trash:hover{
+    text-decoration: none;
+    color: #efbe1f;
+  }
+  ::ng-deep .formato th{
+    background-color: #68072D !important;
+    color: white !important; /*color del texto*/
+  }
+  
+  ::ng-deep .formato td{
+    background-color: white !important;
+    color: black !important; /*color del texto*/
+  }

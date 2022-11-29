@@ -1,0 +1,271 @@
+<!--1<h1>Tabla de empleados</h1>-->
+
+<!--condicion con la directiva ngIf declarando la variable listadeUusarios del componente-->
+<!--<div *ngIf="listadeUsuarios">
+<table class="table" border="1">
+    <caption>Tabla de empleados</caption>
+<tbody>
+
+    <tr>
+        <th>ID:</th>
+        <th>nombre:</th>
+        <th>username:</th>
+        <th>email:</th>
+        <th>telefono:</th>
+        <th>sitio web:</th>
+        <th>direccion:</th>
+        <th>nombre de la compañia:</th>
+
+    </tr>-->
+    <!--for para recorrer la lista de usuarios-->  
+<!--Interpolacion con la variable usuario declarada en el ciclo for-->
+    <!--<tr *ngFor="let usuario of listadeUsuarios">
+  
+      <td>{{usuario.id}}</td>
+  
+      <td> {{usuario.name}}</td>
+
+      <td> {{usuario.username}}</td>      
+      
+      <td> {{usuario.email}}</td>   
+      
+      <td> {{usuario.phone}}</td>  
+
+      <td> {{usuario.website}}</td>  
+
+      <td> {{usuario.address.city}}</td>  
+
+      <td> {{usuario.company.name}}</td>  
+  
+    </tr>
+
+    </tbody>
+
+</table>
+</div>-->
+
+<!--tabla con primeNG-->
+<!--Directiva columns, le pasamos la variable columnas, directiva value le pasamos el arreglo de la variable listadeUsuarios-->
+<!--<p-table [columns]="columnas" [value]="listadeUsuarios" responsiveLayout="scroll">-->
+    <!--ng-template seccion-->
+    <!--
+<ng-template pTemplate="header" let-columns>
+    <tr>-->
+        <!--Ngfor para generar las columnas de forma dinamica-->
+        <!--<th *ngFor="let columna of columnas">
+            {{columna.header}}
+        </th>
+    </tr>
+</ng-template>-->
+<!--ng.template seccion-->
+<!--<ng-template pTemplate="body" let-fila let-columnas="columns">
+<tr>
+     <!--Ngfor para generar las filas de forma dinamica-->
+    <!--<td *ngFor="let columna of columnas">
+        {{fila[columna.field]}}
+    </td>
+</tr>
+</ng-template>
+</p-table>-->
+
+<!--tabla con primeNG version2
+<p-table [value]="listadeUsuarios" responsiveLayout="scroll">
+    <ng-template pTemplate="caption">
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Usuario</th>
+            <th>Compañia</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-usuario>
+        <tr>
+            <td>{{usuario.id}}</td>
+            <td>{{usuario.name}}</td>
+            <td>{{usuario.username}}</td>
+            <td>{{usuario.company.name}}</td>
+    </ng-template>
+</p-table>
+-->
+
+<!--tabla con primeNg version 3-->
+<div class="card">
+    <h2>Tabla de filtro</h2>
+    <!--div del cuadro de busqueda y los botones de refrescar y exportar a pdf, checar este bloque original que tiene la 
+    etiqueta ng-template debajo de la etiqueta p-table-->
+    <div class="estiloComponentes">
+            <!--seccion div del boton de refrescar-->
+            <div class="flex">
+                <!--Boton de primeNg para refrescar la tabla--> <!--Se pueden poner varias clases para ir variando el estilo del componente, en este caso el boton-->
+               <!--<button pButton label="Refrescar" class="p-button p-button-rounded" icon="pi pi-refresh" (click)="clear(miTabla)"></button> boton con un icono-->
+               <!--Boton sin icono-->
+               <button pButton label="Refrescar" class="p-button p-button-rounded" (click)="clear(miTabla)"></button>
+               <button  pButton (click)="exportarPDF();" class="p-button p-button-rounded" icon="pi pi-file-pdf" label="Exportar a PDF" [style]="{'margin-left': '.5em'}"></button> <!--Boton de exportar a pdf-->
+               <button  pButton (click)="mostrarModal();" class="p-button p-button-rounded" icon="pi pi-user-plus" label="Agregar Usuario" [style]="{'margin-left': '.5em'}"></button>
+            </div>
+            <!--Seccion de bloque div para alinear el cuadro de busqueda hacia la izquierda-->
+            <div class="izquierda">
+                <!--<span class="p-input-icon-right ml-auto"> icono de la lupa en el cuadro de texto de busqueda-->
+                <span class="p-input-icon-right ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input  pInputText type="text" (input)="miTabla.filterGlobal($any($event.target).value!, 'contains')" placeholder="Busqueda" />
+                </span>
+                </div>
+                <!--Fin del bloque div del cuadro de busqueda-->
+    </div>
+    <!--fin del div de los componentes para darles estilos-->
+
+    <p-table #miTabla  id="miTabla" [value]="listadeUsuarios" dataKey="id"
+        [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" responsiveLayout="scroll"
+        [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" class="formato" styleClass="p-datatable-sm" 
+        [globalFilterFields]="['id','name','username','email','company.name']"> <!--Poner estos campos tal cual como esta construido en el archivo json, la interfaz o clase del model.ts checar el https://jsonplaceholder.typicode.com/users-->
+        <!--<ng-template pTemplate="caption">-->
+            <!--seccion div del boton de refrescar--> 
+            <!--<div class="flex">-->
+                <!--Boton de primeNg para refrescar la tabla--> <!--Se pueden poner varias clases para ir variando el estilo del componente, en este caso el boton-->
+               <!--<button pButton label="Refrescar" class="p-button p-button-rounded" icon="pi pi-refresh" (click)="clear(miTabla)"></button> boton con un icono-->
+               <!--Boton sin icono-->
+               <!--<button pButton label="Refrescar" class="p-button p-button-rounded" (click)="clear(miTabla)"></button>
+               <button  pButton (click)="exportarPDF();" class="p-button p-button-rounded" icon="pi pi-file-pdf" label="Exportar a PDF"></button>--> <!--Boton de exportar a pdf-->
+           <!--</div>-->
+            <!--Seccion de bloque div para alinear el cuadro de busqueda hacia la izquierda-->
+            <!--<div class="izquierda">-->
+                <!--<span class="p-input-icon-right ml-auto"> icono de la lupa en el cuadro de texto de busqueda-->
+                <!--<span class="p-input-icon-right ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input  pInputText type="text" (input)="miTabla.filterGlobal($any($event.target).value!, 'contains')" placeholder="Busqueda" />
+                </span>
+                </div>-->
+                <!--Fin del bloque div del cuadro de busqueda-->
+       <!--</ng-template>-->
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Nombre de usuario</th>
+                <th>Email</th>
+                <th>Compañia</th>
+                <!--
+                <th style="width: 6rem">status</th>-->
+            </tr>
+            <!--Filtros de busqueda-->
+            <tr>
+                <th>     <!--clase prueba en el filtrador numerico para cambiar el color de los cuadritos que cambian el numero-->
+                    <p-columnFilter type="numeric" field="id" placeholder="ID" class="prueba" [showMenu]="false"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="name" placeholder="Nombre"></p-columnFilter>
+                </th>
+              
+                <th>
+                    <p-columnFilter type="text" field="username" placeholder="Nombre de usuario"></p-columnFilter>
+                </th>
+                
+                <!--Al parecer no funciona y sigue sin arreglarse ese bloque: https://github.com/primefaces/primeng/issues/8888-->
+               <!-- <th>
+                    Show menu muestra el icono del filtro
+                    <p-columnFilter field="username" matchMode="in" [showMenu]="false">
+                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                            <p-multiSelect [ngModel]="value" [options]="listadeUsuarios" (onChange)="filter($any($event.target)).value!" placeholder="any" optionLabel="name">
+                                <ng-template let-option pTemplate="item">
+                                    <div class="p-multiselect-representative-option">
+                                        <span class="ml-1">{{option.name}}</span>
+                                    </div>
+                                </ng-template>
+                            </p-multiSelect>
+                        </ng-template>
+                    </p-columnFilter>
+                </th>-->
+                <th>
+                    <p-columnFilter type="text" field="email" placeholder="Correo electronico"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="company.name" placeholder="Compañia"></p-columnFilter>
+                </th>
+                <!--<th>
+                    <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                            <p-dropdown [ngModel]="value" [options]="status" (onChange)="filter($any($event.target).value!)" placeholder="Any" [showClear]="true">
+                                <ng-template let-option pTemplate="item">
+                                    <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
+                                </ng-template>
+                            </p-dropdown>
+                        </ng-template>
+                    </p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="boolean" field="verified"></p-columnFilter>
+                </th>-->
+            </tr>
+        </ng-template>
+        
+        <!--Tabla que muestra los usuarios-->
+        <ng-template pTemplate="body" let-usuarios>
+            <tr>
+                <td>
+                    {{usuarios.id}}
+                </td>
+    
+                <td>
+                    <span class="image-text">{{usuarios.name}}</span>
+                </td>
+                <td>
+                    <span class="image-text">{{usuarios.username}}</span>
+                </td>
+                <td>
+                    <span> {{usuarios.email}} </span>
+                </td>
+                <td>
+                    <span> {{usuarios.company.name}} </span>
+                </td>
+                <!-- muestra solo el icono en su celda correspondiente en la tabla 
+                <td>
+                    <a href="" class="pi pi-id-card"></a>
+                </td>-->
+                <!--
+                <td>
+                    <span [class]="'customer-badge status-' + customer.status">{{customer.status}}</span>
+                </td>-->
+            </tr>
+            <!--este tr es solo para mostrar las lineas debajo-->
+            <tr class="lineas">
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5">No se econtraron resultados.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<!--Este es un modal que sale desde el boton de agregar usuarios que esta arriba de la tabla con primeNg-->
+<p-dialog [(visible)]="modal" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+    <ng-template pTemplate="header">
+        <!--div para el estilo del header del modal-->
+    <div class="headerModal">
+       <h1>Agregar usuario</h1>
+    </div>
+    </ng-template>
+    <div class="estiloDelFormulario">
+        <form >
+            <input type="number" name="Id" placeholder="Id">
+            <br><br>
+            <input type="text" name="Nombre" placeholder="Nombre">
+            <br><br>
+            <input type="text" name="Nombre de usuario" placeholder="Nombre de usuario">
+            <br><br>
+            <input type="text" name="Email" placeholder="Correo">
+            <br><br>
+            <input type="text" name="Compañia" placeholder="Compañia">
+            <br><br>
+        </form>
+    </div>
+    <ng-template pTemplate="footer">
+        <button  pButton class="p-button p-button-rounded" (click)="cerrarModal()" value="Submit"  label="Cancelar"></button>
+        <button  pButton class="p-button p-button-rounded" label="Guardar"></button>
+    </ng-template>
+</p-dialog>
+

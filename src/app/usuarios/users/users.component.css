@@ -1,0 +1,114 @@
+/*Estilo del bloque div para posicionar el cuadro de busqueda*/
+.izquierda{
+  position: absolute;
+  margin-left: 70%;
+  margin-top: -3%;
+  
+}
+/*estilo del cuadro de texto de busqueda con una anchura de 45px del cuadro de texto y un largo de 400px*/
+.izquierda input{
+  width: 400px;
+  height: 45px;
+/*los border son para mostrar solamente una liena abajo,
+se le pone border none para que no muestre el borde del cuadro y se le pone 
+border bottom para poner borde solo  en la parte superior del input*/
+ border: none;
+ border-bottom: 2px solid #68072D;
+ font-family: Arial, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; /*Estilo del placeholder del cuadro de busqueda*/
+}
+/*Estilo1 del boton de refrescar*/
+/*.btnRefrescar {
+  color: white;
+  background: #68072D;
+  border: 1px solid #68072D;
+  border-top-style: solid; */
+  /*Este backgorund le dice a primeNg o cualquier componente con un color predeterminado que carge el color de manera forzosa que 
+  /*nosotros le pasamos con !important*/
+  /*background: #68072D !important;*/
+/*}*/
+/*Estilo 2 del boton de refrescar heredando de primeNG*/
+::ng-deep .p-button{
+  color: white;
+  background: #68072D;
+  border: 1px solid #68072D;
+  
+  border-top-style: solid; 
+}
+/*Efecto del boton para que cambie de color cuando se le pasa el cursor encima*/
+/*.btnRefrescar:hover{
+  background-color: #efbe1f; 
+  border: 1px solid #efbe1f;
+  color: white;
+}*/
+/*Efecto 2 del boton para que cambie de color cuando se le pasa el cursor encima heredando desde primeNG y diciendole cuales colores sin usar los predeterminados*/
+.p-button:hover{
+  background-color: #efbe1f; 
+  border: 1px solid #efbe1f;
+  color: white;
+}
+
+/*Le decimos a primeNg que tome los colores que nosotros le pasamos en ves de tomar el color de los estilos predeterminados de primeNg,
+en este caso pasamos la clase de la etiqueta input a la que le vamos a poner el estilo de los botones ya que esta no contine la clase
+p-button por lo que se le tiene que especificar*/
+::ng-deep .prueba .p-button{
+  color: #ffffff;
+  background: #68072D;
+  border: 1px solid #68072D;
+}
+/*Le decimos a primeNg que tome los colores que nosotros le pasamos en ves de tomar el color de los estilos predeterminados de primeNg para el hover*/
+::ng-deep .prueba .p-button:hover{
+  color: #ffffff;
+  background: #ab0447;
+  border: 1px solid #ab0447;
+}
+/*
+.formato::ng-deep th {
+  background-color: blue !important;
+}*/
+
+/*separacion de espacio de la tabla para que no quede pegada con los elementos de arriba y formato de tabla*/
+.formato{
+  margin-top: 2%;
+  width: 80%;
+  margin-left: 10%;
+}
+
+/*cambiamos la cabecera de la tabla*/
+::ng-deep .formato th{
+  background-color: #C8C8C8 !important;
+  color: black !important; /*color del texto*/
+}
+
+::ng-deep .formato td{
+  background-color: white !important;
+  color: black !important; /*color del texto*/
+}
+
+/*mostrar las lineas en la tabla*/
+.lineas{
+ border-bottom: 0.5px solid #000000;
+}
+
+/*estilo del icono*/
+.pi-id-card{
+  text-decoration: none;
+  color: #efbe1f;
+}
+
+/*separacion de espacio de los botones y el buscador para que no quede pegada con la tabla y el titulo de arriba*/
+.estiloComponentes{
+  margin-top: 1%;
+}
+
+.estiloDelFormulario{
+  margin-left: 30%;
+}
+.estiloDelFormulario input{
+  margin-left: 10%;
+  border: none;
+  border-bottom: 2px solid #68072D;
+  font-family: Arial, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.headerModal{
+ margin-left: 37%;
+}

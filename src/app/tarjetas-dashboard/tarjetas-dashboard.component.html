@@ -1,0 +1,134 @@
+<!--
+<div class="card1">
+<p-card header="Simple Card" [style]="{'width': '25rem', 'margin-bottom': '2em'}">
+    <ng-template pTemplate="header">
+        <img alt="Card" src="assets/stock.jpg">
+    </ng-template>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+        <button class="btn btn-primary">ir a </button>
+    <button class="btn btn-primary">ir a </button>
+</p-card>
+</div>-->
+
+<!--Div contenedor principal de las terjetas-->
+<!--<div class="tarjetas">
+    <div fxLayout="row wrap">
+        <div  fxFlex="25%" *ngFor="let num of [1,2,3,4,5,6,7]">
+
+        </div>
+    </div>-->
+<!--Tarjeta avanzada con primeNG-->
+<!--<div class="card2">
+<p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '300px'}" styleClass="p-card-shadow">
+    <ng-template pTemplate="header">
+        <img alt="Card" src="assets/descarga.png">
+    </ng-template>
+    <p>Esta es una tarjeta de prueba</p>
+    <ng-template pTemplate="footer">-->                                      <!--icon="pi pi-check"-->
+       <!--<a href="/usuarios" target="_blank"><p-button label="Ir a usuarios" icon="pi pi-check"></p-button></a>-->
+       <!--<a href="/usuarios" target="_blank"><p-button label="Ir a usuarios"></p-button></a>
+        <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
+    </ng-template>
+</p-card>
+</div>
+
+
+<div class="card3">
+    <p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '300px'}" styleClass="p-card-shadow">
+        <ng-template pTemplate="header">
+            <img alt="Card" src="assets/stock.jpg">
+        </ng-template>
+        <p>Esta es una tarjeta de prueba</p>
+        <ng-template pTemplate="footer">                                          
+            <a href="/fraseChuck" target="_blank"><p-button label="frases"></p-button></a>
+            <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
+        </ng-template>
+    </p-card>
+    </div>
+
+    <div class="cards">
+        <p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '300px'}" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+                <img alt="Card" src="assets/stock.jpg">
+            </ng-template>
+            <p>Esta es una tarjeta de prueba</p>
+            <ng-template pTemplate="footer">                                          
+                <a href="/fraseChuck" target="_blank"><p-button label="frases"></p-button></a>
+                <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
+            </ng-template>
+        </p-card>
+        </div>
+
+        <div class="cards">
+            <p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '300px'}" styleClass="p-card-shadow">
+                <ng-template pTemplate="header">
+                    <img alt="Card" src="assets/stock.jpg">
+                </ng-template>
+                <p>Esta es una tarjeta de prueba</p>
+                <ng-template pTemplate="footer">                                          
+                    <a href="/fraseChuck" target="_blank"><p-button label="frases"></p-button></a>
+                    <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
+                </ng-template>
+            </p-card>
+            </div>
+</div>
+-->
+
+
+<!--Tarjetas dinamicas-->
+<!--<div class="tarjetas">
+    <div fxLayout="row wrap" fxLayout="16px grid">
+        <div  fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1,2,3,4,5,6,7]">
+            <p-card-header>
+               <p-card-title> Tarjetas de prueba {{num}}</p-card-title>
+            </p-card-header>
+            <p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '300px'}" styleClass="p-card-shadow">
+                <ng-template pTemplate="header">
+                    <img alt="Card" src="assets/descarga.png">
+                </ng-template>
+                <p>Esta es una tarjeta de prueba</p>
+                <ng-template pTemplate="footer">                                    
+                   <a href="/usuarios" target="_blank"><p-button label="Ir a usuarios"></p-button></a>
+                    <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+</div>-->
+
+<!--tarjetas dinamicas dentro de una tabla-->
+<div class="card">
+    <h2>Tabla de filtro</h2>
+    <p>Los filtros se muestran en línea dentro de una fila separada.</p>
+    <p-table >
+        <ng-template pTemplate="header">
+           
+          
+        </ng-template>
+        
+        <ng-template pTemplate="body" let-usuarios>
+            <tr>
+                <td>
+                    {{usuarios.id}}
+                </td>
+                <td>
+                    <span class="image-text">{{usuarios.name}}</span>
+                </td>
+                <td>
+                    <span class="image-text">{{usuarios.username}}</span>
+                </td>
+                <td>
+                    <span> {{usuarios.email}} </span>
+                </td>
+                <td>
+                    <span> {{usuarios.company.name}} </span>
+                </td>
+                <!--
+                <td>
+                    <span [class]="'customer-badge status-' + customer.status">{{customer.status}}</span>
+                </td>-->
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
